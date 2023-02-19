@@ -1,0 +1,30 @@
+<!-- Code Derived "Python Django Tutorial: Full-Featured Web App Part 7 - Login and Logout System" Timestamp 22:52 -->
+<!-- Code Derived from the video "Python Django Tutorial: Full-Featured Web App Part 3 - Templates" Timestamp 2:30, 24:55 -->
+<!-- Code Derived via "Python Django Tutorial: Full-Featured Web App Part 6 - User Registration Timestamp: 7:49-->
+<!-- Code Derived via "Python Django Tutorial: Full-Featured Web App Part 8 - User Profile and Picture Timestamp: 19:39-->
+
+<!-- For loop for Posts -->
+{% extends "website/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <div class="content-section">
+  <div class="media">
+    <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+    <div class="media-body">
+      <h2 class="account-heading">{{ user.username }}</h2>
+      <p class="text-secondary">{{ user.email }}</p>
+    </div>
+  </div>
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <fieldset>
+        <legend class="border-bottom mb-4">Profile Info</legend>
+        {{ u_form|crispy }}
+        {{ p_form|crispy }}
+      </fieldset>
+      <div class="form-group">
+        <button class="btn btn-outline-info" type="sumbit">Update</button>
+      </div>
+    </form>
+</div>
+{% endblock content %}

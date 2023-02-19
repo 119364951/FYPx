@@ -1,0 +1,12 @@
+<!-- Code derived from "Python Django Tutorial: Full-Featured Web App Part 7 - Login and Logout System" Timestamp 14:10-->
+{% extends "website/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+        <h2>You have been logged out</h2>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                <a class="ml-2" href="{% url 'login' %}">Login In Again</a>
+            </small>
+        </div>
+
+{% endblock content %}

@@ -1,0 +1,27 @@
+<!-- Code derived from "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 14:50 -->
+<!-- Derived from the video "Python Django Tutorial: Full-Featured Web App Part 3 - Templates" ...-->
+<!-- ...Timestamp 2:30, 14:00, 18:30, 22:30, 31:40 -->
+{% extends "website/base.html" %}
+<!-- For loop for Posts -->
+ <!-- Derived from the video "Python Django Tutorial: Full-Featured Web App Part 3 - Templates" Timestamp 39:30 -->
+    {% block content %}
+    <article class="media content-section">
+<!-- "Code derived from Python Django Tutorial: Full-Featured Web App Part 9 - Update User Profile" Tiemstamp 24:06-->
+<!-- Not working the image bit -->
+       <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
+    <div class="media-body">
+        <div class="article-metadata">
+        <a class="mr-2" href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a>
+        <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+            <!-- "Code updated and derived from "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Tiemstamp 48:45-->
+            {% if object.author == user %}
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+            {% endif %}
+        </div>
+        <h2 class="article-title">{{ object.title }}</h2>
+        <p class="article-content">{{ object.content }}</p>
+    </div>
+    </article>
+<!-- Shows which block is explicitly being close  -->
+{% endblock content %}

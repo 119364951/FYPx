@@ -1,0 +1,47 @@
+<!-- Code derived from "Python Django Tutorial: Full-Featured Web App Part 11 - Pagination" Timestamp 28:50 -->
+<!-- Derived from the video "Python Django Tutorial: Full-Featured Web App Part 3 - Templates" ...-->
+<!-- ...Timestamp 2:30, 14:00, 18:30, 22:30, 31:40 -->
+{% extends "website/base.html" %}
+<!-- For loop for Posts -->
+ <!-- Derived from the video "Python Django Tutorial: Full-Featured Web App Part 3 - Templates" Timestamp 39:30 -->
+{% block content %}
+<h1 class="mb-3" >Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
+    {% for posts in posts %}
+    <article class="media content-section">
+<!-- "Code derived from Python Django Tutorial: Full-Featured Web App Part 9 - Update User Profile" Tiemstamp 24:06-->
+<!-- Not working -->
+       <img class="rounded-circle article-img" src="{{ posts.author.profile.image.url }}">
+    <div class="media-body">
+        <div class="article-metadata">
+        <a class="mr-2" href="{% url 'user-posts' posts.author.username %}">{{ posts.author }}</a>
+        <small class="text-muted">{{ posts.date_posted|date:"F d, Y" }}</small>
+        </div>
+        <h2><a class="article-title" href="{% url 'post-detail' posts.id %}">{{ posts.title }}</a></h2>
+        <p class="article-content">{{ posts.content }}</p>
+    </div>
+    </article>
+    {% endfor %}
+<!-- Code derived from video "Python Django Tutorial: Full-Featured Web App Part 11 - Pagination" Timestamp 11:35, 13:43, 18:50 -->
+    {% if is_paginated %}
+
+      {% if page_obj.has_previous %}
+        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+      {% endif %}
+
+    {% endif %}
+<!-- Shows which block is explicitly being close  -->
+{% endblock content %}
