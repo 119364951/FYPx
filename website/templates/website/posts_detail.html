@@ -23,5 +23,25 @@
         <p class="article-content">{{ object.content }}</p>
     </div>
     </article>
+
+      <div class=col-md-8">
+            <h2>Comments</h2>
+
+          {% if not post.comments.all %}
+                No comments Yet <a href="#">
+          Add here</a>
+          {% else %}
+            {% for comments.all in posts.comments.all %}
+                <strong>
+                    {{ comments.name }} -
+                    {{ comments.date_posted }}
+                </strong>
+                </br>
+                {{ comments.body }}
+            {% endfor %}
+          {% endif %}
+
+      </div>
+
 <!-- Shows which block is explicitly being close  -->
 {% endblock content %}
