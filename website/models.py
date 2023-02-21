@@ -15,6 +15,14 @@ class Posts(models.Model):
     # If User gets deleted their posts get removed too
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
+# Code derived from Python Django Tutorial: Full-Featured Web App Part 5 - Database and Migrations Timestamp 2:19
+class ModPosts(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    date_posted = models.DateTimeField(default=timezone.now)
+    # If User gets deleted their posts get removed too
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+
 # Code derived from "Build A Blog Comment Section - Django Blog #33" Timestamp 1:40
 class Comments(models.Model):
     posts = models.ForeignKey(Posts, on_delete=models.CASCADE)
