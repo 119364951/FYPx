@@ -11,7 +11,7 @@
        <img class="rounded-circle article-img" src="{{ modposts.author.profile.image.url }}">
     <div class="media-body">
         <div class="article-metadata">
-        <a class="mr-2" href="{% url 'user-posts' modposts.author.username %}">{{ modposts.author }}</a>
+        <a class="mr-2" href="{% url 'moduser-posts' modposts.author.username %}">{{ modposts.author }}</a>
         <small class="text-muted">{{ modposts.date_posted|date:"F d, Y" }}</small>
         </div>
         <h2><a class="article-title" href="{% url 'modpost-detail' modposts.id %}">{{ modposts.title }}</a></h2>
