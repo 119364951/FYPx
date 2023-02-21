@@ -23,12 +23,12 @@
         <p class="article-content">{{ object.content }}</p>
     </div>
     </article>
-
+<!-- Code derived from "Build a Blog Comment Section - Django Blog #33" Timestamp -->
+<!-- Code updated from "Post Blog Comments - Django Blog #33" Timestamp 8:18 -->
       <div class=col-md-8">
             <h2>Comments</h2>
-
           {% if not post.comments.all %}
-                No comments Yet <a href="#">
+                No comments Yet <a href="{% url 'post-comment' object.id %}" >
           Add here</a>
           {% else %}
             {% for comments.all in posts.comments.all %}
@@ -38,6 +38,7 @@
                 </strong>
                 </br>
                 {{ comments.body }}
+                </br>
             {% endfor %}
           {% endif %}
 

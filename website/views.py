@@ -15,7 +15,8 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 
 ## Code derived from the video "Python Django Tutorial: Full-Featured Web App Part 5 - Database and Migrations"
 # Timestamp 28:37
-from .models import Posts
+#Code derived from "Post Blog Comments - Django Blog #34" Timestmap 5:48
+from .models import Posts, Comments
 
 # Create your views here
 # Posts: This variable has the innards of our posts
@@ -124,6 +125,15 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
+
+#Code derived from "Post Blog Comments - Django Blog #34" Timestmap 5:48
+class PostCommentView(LoginRequiredMixin, CreateView):
+    model = Comments
+    fields = ['title', 'body']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 # Own Code derived from "Python Django Tutorial: Full-Featured Web App Part 2 - Applications and Routes"
 def archives(request):
