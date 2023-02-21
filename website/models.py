@@ -16,7 +16,7 @@ class Posts(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
 # Code derived from Python Django Tutorial: Full-Featured Web App Part 5 - Database and Migrations Timestamp 2:19
-class ModPosts(models.Model):
+class GreenPosts(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
