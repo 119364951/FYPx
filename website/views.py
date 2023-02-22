@@ -124,3 +124,28 @@ def greenwashing(request):
     }
     return render(request, 'website/greenwashing.html', {'title': 'greenwashing'})
 
+class GreenPostListView(ListView):
+    model = GreenPosts
+    template_name = 'website/greenwashing.html' #<app>/<model>_<viewtype>.html
+    context_object_name = 'greenposts'
+    # Not changed because newer articles would be better to see
+    ordering = ['date_posted']
+# Code derived from video "Python Django Tutorial: Full-Featured Web App Part 11 - Pagination" Timestamp 8:40
+
+#Code derived from video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 23:20
+class GreenUserPostListView(ListView):
+    model = Posts
+    template_name = 'website/greenuser_posts.html' #<app>/<model>_<viewtype>.html
+    context_object_name = 'greenposts'
+# Code derived from video "Python Django Tutorial: Full-Featured Web App Part 11 - Pagination" Timestamp 8:40, 25:55
+    paginate_by = 3
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return GreenPosts.objects.filter(author=user).order_by('-date_posted')
+
+# Code derived from video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 11:00,,22:08
+class GreenPostDetailView(DetailView):
+    model = GreenPosts
+
+
