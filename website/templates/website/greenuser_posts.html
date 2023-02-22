@@ -1,10 +1,11 @@
+<!-- Code derived from "Python Django Tutorial: Full-Featured Web App Part 11 - Pagination" Timestamp 28:50 -->
 <!-- Derived from the video "Python Django Tutorial: Full-Featured Web App Part 3 - Templates" ...-->
 <!-- ...Timestamp 2:30, 14:00, 18:30, 22:30, 31:40 -->
 {% extends "website/base.html" %}
 <!-- For loop for Posts -->
-
  <!-- Derived from the video "Python Django Tutorial: Full-Featured Web App Part 3 - Templates" Timestamp 39:30 -->
 {% block content %}
+<h1 class="mb-3" >Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
     {% for greenposts in greenposts %}
     <article class="media content-section">
 
