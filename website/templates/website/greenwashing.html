@@ -4,18 +4,18 @@
 <!-- For loop for Posts -->
  <!-- Derived from the video "Python Django Tutorial: Full-Featured Web App Part 3 - Templates" Timestamp 39:30 -->
 {% block content %}
-    {% for modposts in modposts %}
+    {% for greenposts in greenposts %}
     <article class="media content-section">
 <!-- "Code derived from Python Django Tutorial: Full-Featured Web App Part 9 - Update User Profile" Tiemstamp 24:06-->
 <!-- Not working -->
-       <img class="rounded-circle article-img" src="{{ modposts.author.profile.image.url }}">
+       <img class="rounded-circle article-img" src="{{ greenposts.author.profile.image.url }}">
     <div class="media-body">
         <div class="article-metadata">
-        <a class="mr-2" href="{% url 'moduser-posts' modposts.author.username %}">{{ modposts.author }}</a>
-        <small class="text-muted">{{ modposts.date_posted|date:"F d, Y" }}</small>
+        <a class="mr-2" href="{% url 'greenuser-posts' greenposts.author.username %}">{{ greenposts.author }}</a>
+        <small class="text-muted">{{ greenposts.date_posted|date:"F d, Y" }}</small>
         </div>
-        <h2><a class="article-title" href="{% url 'modpost-detail' modposts.id %}">{{ modposts.title }}</a></h2>
-        <p class="article-content">{{ modposts.content }}</p>
+        <h2><a class="article-title" href="{% url 'greenpost-detail' greenposts.id %}">{{ greenposts.title }}</a></h2>
+        <p class="article-content">{{ greenposts.content }}</p>
     </div>
     </article>
     {% endfor %}
