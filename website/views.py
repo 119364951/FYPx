@@ -36,6 +36,7 @@ def home(request):
 def about(request):
     return render(request, 'website/about.html', {'title': 'About'})
 
+# Alternatives Posts
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 3:20, 6:23, 7:30
 class PostListView(ListView):
     model = Posts
@@ -107,6 +108,68 @@ class PostCommentView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+#Greenwashing Posts
+# Code derived from video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 3:20, 6:23, 7:30
+class GreenPostListView(ListView):
+    model = GreenPosts
+    template_name = 'website/home.html' #<app>/<model>_<viewtype>.html
+    context_object_name = 'greenposts'
+    # Not changed because newer articles would be better to see
+    ordering = ['date_posted']
+# Code derived from video "Python Django Tutorial: Full-Featured Web App Part 11 - Pagination" Timestamp 8:40
+    paginate_by = 5
+
+# Code derived from video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 23:20
+class GreenPostListView(ListView):
+    model = GreenPosts
+    template_name = 'website/user_posts.html' #<app>/<model>_<viewtype>.html
+    context_object_name = 'posts'
+# Code derived from video "Python Django Tutorial: Full-Featured Web App Part 11 - Pagination" Timestamp 8:40, 25:55
+    paginate_by = 3
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Posts.objects.filter(author=user).order_by('-date_posted')
+
+
+# Code derived from video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 11:00,,22:08
+class GreenDetailView(DetailView):
+    model = GreenPosts
+
+# Code derived from video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 20:21, 25:25
+class GreenCreateView(LoginRequiredMixin, CreateView):
+    model = GreenPosts
+    fields = ['title', 'content']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+# Code derived from video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 33:15
+class GreenUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = GreenPosts
+    fields = ['title', 'content']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+
+# Code derived from video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 39:40, 46:25
+class GreenDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = GreenPosts
+    success_url = '/'
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
 
 # Own Code derived from "Python Django Tutorial: Full-Featured Web App Part 2 - Applications and Routes"
 def archives(request):
