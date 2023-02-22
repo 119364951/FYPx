@@ -112,7 +112,7 @@ class PostCommentView(LoginRequiredMixin, CreateView):
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 3:20, 6:23, 7:30
 class GreenPostListView(ListView):
     model = GreenPosts
-    template_name = 'website/home.html' #<app>/<model>_<viewtype>.html
+    template_name = 'website/greenwashing.html' #<app>/<model>_<viewtype>.html
     context_object_name = 'greenposts'
     # Not changed because newer articles would be better to see
     ordering = ['date_posted']
@@ -120,10 +120,10 @@ class GreenPostListView(ListView):
     paginate_by = 5
 
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 23:20
-class GreenPostListView(ListView):
+class GreenListView(ListView):
     model = GreenPosts
     template_name = 'website/user_posts.html' #<app>/<model>_<viewtype>.html
-    context_object_name = 'posts'
+    context_object_name = 'greenposts'
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 11 - Pagination" Timestamp 8:40, 25:55
     paginate_by = 3
 
