@@ -117,19 +117,19 @@ class GreenPostListView(ListView):
     # Not changed because newer articles would be better to see
     ordering = ['date_posted']
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 11 - Pagination" Timestamp 8:40
-    paginate_by = 5
+
 
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 23:20
 class GreenListView(ListView):
     model = GreenPosts
-    template_name = 'website/user_posts.html' #<app>/<model>_<viewtype>.html
+    template_name = 'website/greenuser_posts.html' #<app>/<model>_<viewtype>.html
     context_object_name = 'greenposts'
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 11 - Pagination" Timestamp 8:40, 25:55
     paginate_by = 3
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
-        return Posts.objects.filter(author=user).order_by('-date_posted')
+        return GreenPosts.objects.filter(author=user).order_by('-date_posted')
 
 
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 11:00,,22:08
@@ -155,8 +155,8 @@ class GreenUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return super().form_valid(form)
 
     def test_func(self):
-        post = self.get_object()
-        if self.request.user == post.author:
+        greenpost = self.get_object()
+        if self.request.user == greenpost.author:
             return True
         return False
 
@@ -166,8 +166,8 @@ class GreenDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     success_url = '/'
 
     def test_func(self):
-        post = self.get_object()
-        if self.request.user == post.author:
+        greenpost = self.get_object()
+        if self.request.user == greenpost.author:
             return True
         return False
 
@@ -179,5 +179,9 @@ def alternatives(request):
     return render(request, 'website/alternatives.html', {'title': 'Alternatives'})
 
 def greenwashing(request):
-    return render(request, 'website/greenwashing.html', {'title': 'Greenwashing'})
+    # Context: allows us to deploy info from here to the templates
+    context = {
+        'greenposts': GreenPosts.objects.all()
+    }
+    return render(request, 'website/greenwashing.html', {'title': 'greenwashing'})
 
