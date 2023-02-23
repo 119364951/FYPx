@@ -134,6 +134,7 @@ class GreenPostListView(ListView):
     # Not changed because newer articles would be better to see
     ordering = ['date_posted']
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 11 - Pagination" Timestamp 8:40
+    paginate_by = 5
 
 #Code derived from video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 23:20
 class GreenUserPostListView(ListView):
