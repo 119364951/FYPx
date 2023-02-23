@@ -40,7 +40,7 @@ def about(request):
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 3:20, 6:23, 7:30
 class PostListView(ListView):
     model = Posts
-    template_name = 'website/home.html' #<app>/<model>_<viewtype>.html
+    template_name = 'website/alternatives.html' #<app>/<model>_<viewtype>.html
     context_object_name = 'posts'
     # Not changed because newer articles would be better to see
     ordering = ['date_posted']
@@ -115,7 +115,10 @@ def archives(request):
     return render(request, 'website/archives.html', {'title': 'Archives'})
 
 def alternatives(request):
-    return render(request, 'website/alternatives.html', {'title': 'Alternatives'})
+    context = {
+        'posts': Posts.objects.all()
+    }
+    return render(request, 'website/alternatives.html', context)
 
 def greenwashing(request):
     # Context: allows us to deploy info from here to the templates

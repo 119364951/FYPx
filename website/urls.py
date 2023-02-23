@@ -22,7 +22,7 @@ urlpatterns = [
 
     # Own code derived from the video "Python Django Tutorial: Full-Featured Web App Part 2 - Applications and Routes" Timestamp 5:30 and 14:10
     path('archives/', views.archives, name='website-archives'),
-    path('alternatives/', views.alternatives, name='website-alternatives'),
+    path('alternatives/', PostListView.as_view(), name='website-alternatives'),
    # path('greenwashing/', views.greenwashing, name='website-greenwashing'),
     path('greenwashing/', GreenPostListView.as_view(), name='website-greenwashing'),
     path('greenuser/<str:username>', GreenUserPostListView.as_view(), name='greenuser-posts'),
