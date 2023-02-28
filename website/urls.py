@@ -4,7 +4,7 @@ from.import views
 
 # Updated derived from the video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 4:00, 11:30, 21:10, 40:30
 # Code updated and derived from "Post Blog Comments - Django Blog #34" Timestamp 6:25
-from .views import PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView, UserPostListView, PostCommentView, GreenPostListView, GreenUserPostListView, GreenPostDetailView, HPostListView
+from .views import PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView, UserPostListView, PostCommentView, GreenPostListView, GreenUserPostListView, GreenPostDetailView
 
 # Derived from the video "Python Django Tutorial: Full-Featured Web App Part 2 - Applications and Routes" Timestamp 5:30 and 14:10
 # Updated derived from the video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 4:00, 18:35

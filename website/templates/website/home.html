@@ -7,6 +7,7 @@
 {% block content %}
 <h1>Home</h1>
     {% for posts in posts %}
+
     <article class="media content-section">
 <!-- "Code derived from Python Django Tutorial: Full-Featured Web App Part 9 - Update User Profile" Tiemstamp 24:06-->
 <!-- Not working -->
@@ -22,6 +23,8 @@
     </article>
     {% endfor %}
 
+
+
     {% for greenposts in greenposts %}
     <article class="media content-section">
 
@@ -35,29 +38,10 @@
         <p class="article-content">{{ greenposts.content }}</p>
     </div>
     </article>
+
     {% endfor %}
 
-<!-- Code derived from video "Python Django Tutorial: Full-Featured Web App Part 11 - Pagination" Timestamp 11:35, 13:43, 18:50 -->
-    {% if is_paginated %}
 
-      {% if page_obj.has_previous %}
-        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
-        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-      {% endif %}
 
-      {% for num in page_obj.paginator.page_range %}
-        {% if page_obj.number == num %}
-          <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
-        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-          <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
-        {% endif %}
-      {% endfor %}
-
-      {% if page_obj.has_next %}
-        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-      {% endif %}
-
-    {% endif %}
 <!-- Shows which block is explicitly being close  -->
 {% endblock content %}

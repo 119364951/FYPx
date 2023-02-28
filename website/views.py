@@ -1,4 +1,5 @@
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 11 - Pagination" Timestamp 25:10
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, get_object_or_404
 
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 32:10, 36:50
@@ -27,15 +28,15 @@ from .models import Posts, Comments, GreenPosts
 # Connects to the URLs
 def home(request):
     # Context: allows us to deploy info from here to the templates
-    greenposts = GreenPosts.objects.all
-    posts = Posts.objects.all()
+    posts = Posts.objects.all()[:3]
+    greenposts = GreenPosts.objects.filter().order_by('-date_posted')[:3]
+
     context = {
         'greenposts' : greenposts,
         'posts': posts
     }
-    return render(request, 'website/home.html', context)
 
-
+    return render(request, 'website/home.html', context,)
 
 # Derived from the video "Python Django Tutorial: Full-Featured Web App Part 2 - Applications and Routes" Timestamp 13:25
 def about(request):
@@ -45,21 +46,12 @@ def about(request):
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 3:20, 6:23, 7:30
 class PostListView(ListView):
     model = Posts
-    template_name = 'website/alternatives.html' #<app>/<model>_<viewtype>.html
+    template_name = 'website/alternatives.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
     # Not changed because newer articles would be better to see
     ordering = ['date_posted']
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 11 - Pagination" Timestamp 8:40
     paginate_by = 5
-
-class HPostListView(ListView):
-    model = Posts
-    template_name = 'website/home.html' #<app>/<model>_<viewtype>.html
-    context_object_name = 'posts'
-    # Not changed because newer articles would be better to see
-    ordering = ['date_posted']
-# Code derived from video "Python Django Tutorial: Full-Featured Web App Part 11 - Pagination" Timestamp 8:40
-    paginate_by = 3
 
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 23:20
 class UserPostListView(ListView):
