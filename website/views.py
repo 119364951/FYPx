@@ -27,10 +27,15 @@ from .models import Posts, Comments, GreenPosts
 # Connects to the URLs
 def home(request):
     # Context: allows us to deploy info from here to the templates
+    greenposts = GreenPosts.objects.all
+    posts = Posts.objects.all()
     context = {
-        'posts': Posts.objects.all()
+        'greenposts' : greenposts,
+        'posts': posts
     }
     return render(request, 'website/home.html', context)
+
+
 
 # Derived from the video "Python Django Tutorial: Full-Featured Web App Part 2 - Applications and Routes" Timestamp 13:25
 def about(request):
@@ -46,6 +51,15 @@ class PostListView(ListView):
     ordering = ['date_posted']
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 11 - Pagination" Timestamp 8:40
     paginate_by = 5
+
+class HPostListView(ListView):
+    model = Posts
+    template_name = 'website/home.html' #<app>/<model>_<viewtype>.html
+    context_object_name = 'posts'
+    # Not changed because newer articles would be better to see
+    ordering = ['date_posted']
+# Code derived from video "Python Django Tutorial: Full-Featured Web App Part 11 - Pagination" Timestamp 8:40
+    paginate_by = 3
 
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 23:20
 class UserPostListView(ListView):
