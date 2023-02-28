@@ -27,6 +27,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 #Test User -> Login Username:User4794a, Email:user4794a@gmail.com, Password: StrikeForce37
+#Test Admin ->
 
 # Application definition
 # Webconfig app allows the deployment of the website app
