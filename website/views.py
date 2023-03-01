@@ -158,4 +158,15 @@ class GreenUserPostListView(ListView):
 class GreenPostDetailView(DetailView):
     model = GreenPosts
 
+# Based off "https://djangoguide.readthedocs.io/en/latest/django/search.html"
+class SearchPosts(ListView):
+    template_name = 'website/alternatives.html'
+    def get_queryset(self):
+        val = self.kwargs.get("urlsearch")
+        if val:
+            queryset = Posts.objects.filter(title__icontains=val)
+        else:
+            queryset = Posts.objects.none()
+        return queryset
+
 
