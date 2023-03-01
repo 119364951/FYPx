@@ -79,6 +79,7 @@
         <p class='text-muted'>Search for relevant information here
           <ul class="list-group">
 
+<!-- Code Derived from "create a basic search in django" Timestamp 2:10-->
                 <form  action="{% url 'search-posts' %}" method="get">
                  {% csrf_token %}
                 <input type="text" name="q" placeholder="Search Posts">

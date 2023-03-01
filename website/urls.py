@@ -32,5 +32,6 @@ urlpatterns = [
     path('greenuser/<str:username>', GreenUserPostListView.as_view(), name='greenuser-posts'),
     path('greenpost/<int:pk>/', GreenPostDetailView.as_view(), name='greenpost-detail'),
 
+#Code Derived from "create a basic search in django" Timestamp 4:00
     path('search-posts/', views.PostsSearchView.as_view(), name='search-posts')
 ]

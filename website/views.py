@@ -163,6 +163,7 @@ class PostsSearchView(ListView):
     template_name = 'website/alternatives.html'
     context_object_name = 'posts'
 
+#Code Derived from "create a basic search in django" Timestamp 4:45
     def get_queryset(self):
         query = self.request.GET.get('q')
         return Posts.objects.filter(title__icontains=query).order_by('-title')

@@ -25,6 +25,9 @@ osiE80TeTtoQCKZ03TU5fNfx2UY6U4p&index=5
 Python - Connect to MySQL Database with PyCharm:
 https://www.youtube.com/watch?v=elWvom3F2tQ
 
+create a basic search in django
+https://www.youtube.com/watch?v=VL5ZNCjXEbw&ab_channel=codepiep
+
 N.B. The code for the entire tutorial is in here but I will not be using without the tutorial because I
 will not be able to understand the workings of the code and thus be unable to modify it.
 
