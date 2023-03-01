@@ -28,8 +28,8 @@ from .models import Posts, Comments, GreenPosts
 # Connects to the URLs
 def home(request):
     # Context: allows us to deploy info from here to the templates
-    posts = Posts.objects.all()[:3]
-    greenposts = GreenPosts.objects.filter().order_by('-date_posted')[:3]
+    posts = Posts.objects.filter().order_by('-date_posted')[:2]
+    greenposts = GreenPosts.objects.filter().order_by('-date_posted')[:2]
 
     context = {
         'greenposts' : greenposts,
@@ -49,7 +49,7 @@ class PostListView(ListView):
     template_name = 'website/alternatives.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
     # Not changed because newer articles would be better to see
-    ordering = ['date_posted']
+    ordering = ['-date_posted']
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 11 - Pagination" Timestamp 8:40
     paginate_by = 5
 
@@ -138,7 +138,7 @@ class GreenPostListView(ListView):
     template_name = 'website/greenwashing.html' #<app>/<model>_<viewtype>.html
     context_object_name = 'greenposts'
     # Not changed because newer articles would be better to see
-    ordering = ['date_posted']
+    ordering = ['-date_posted']
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 11 - Pagination" Timestamp 8:40
     paginate_by = 5
 
