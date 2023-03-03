@@ -170,4 +170,14 @@ class PostsSearchView(ListView):
         query = self.request.GET.get('q')
         return Posts.objects.filter(title__icontains=query).order_by('-title')
 
+class GreenPostsSearchView(ListView):
+    model = GreenPosts
+    template_name = 'website/greenwashing.html'
+    context_object_name = 'greenposts'
+
+#Code Derived from "create a basic search in django" Timestamp 4:45
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        return GreenPosts.objects.filter(title__icontains=query).order_by('-title')
+
 
