@@ -11,9 +11,6 @@ from .views import (PostListView, PostDetailView,
                     GreenUserPostListView, GreenPostDetailView,
                     SearchPosts)
 
-#Based off "https://djangoguide.readthedocs.io/en/latest/django/search.html"
-from django.conf.urls import url
-
 # Derived from the video "Python Django Tutorial: Full-Featured Web App Part 2 - Applications and Routes" Timestamp 5:30 and 14:10
 # Updated derived from the video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 4:00, 18:35
 # Creates a URL path for the app
@@ -35,6 +32,5 @@ urlpatterns = [
     path('greenuser/<str:username>', GreenUserPostListView.as_view(), name='greenuser-posts'),
     path('greenpost/<int:pk>/', GreenPostDetailView.as_view(), name='greenpost-detail'),
 
-    url(r'^searchfromurl/(?P<urlsearch>[\w-]+)/$', SearchPosts.as_view(),
-        name="searchfromurl"),  # search item received from url
+
 ]
