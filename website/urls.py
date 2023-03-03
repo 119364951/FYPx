@@ -34,5 +34,5 @@ urlpatterns = [
 
 #Code Derived from "create a basic search in django" Timestamp 4:00
     path('search-posts/', views.PostsSearchView.as_view(), name='search-posts'),
-    path('search-greenposts/', views.GreenPostsSearchView.as_view(), name='search-greenposts')
+    path('search-greenposts/', views.GreenPostsSearchView.as_view(), name='greensearch-posts')
 ]

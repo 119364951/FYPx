@@ -6,6 +6,12 @@
  <!-- Derived from the video "Python Django Tutorial: Full-Featured Web App Part 3 - Templates" Timestamp 39:30 -->
 {% block content %}
 <h1>Greenwashing</h1>
+    <!-- Code Derived from "create a basic search in django" Timestamp 2:10-->
+                <form  action="{% url 'greensearch-posts' %}" method="get">
+                 {% csrf_token %}
+                <input type="text" name="q" placeholder="Search Green-Posts">
+                 <button type="submit" >Search</button>
+              </form>
     {% for greenposts in greenposts %}
     <article class="media content-section">
 

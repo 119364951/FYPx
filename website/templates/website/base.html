@@ -58,9 +58,7 @@
     </div>
   </nav>
 </header>
-
-
- <!--Derived from the video "Python Django Tutorial: Full-Featured Web App Part 6 - User Registration" Timestamp 24:46-->
+  <!--Derived from the video "Python Django Tutorial: Full-Featured Web App Part 6 - User Registration" Timestamp 24:46-->
 <main role="main" class="container">
   <div class="row">
     <div class="col-md-8">
@@ -74,25 +72,8 @@
         {% endif %}
       {% block content %}{% endblock %}
     </div>
-    <div class="col-md-4">
-      <div class="content-section">
-        <h3>Search Bar</h3>
-        <p class='text-muted'>Search for relevant information here
-          <ul class="list-group">
-
-<!-- Code Derived from "create a basic search in django" Timestamp 2:10-->
-                <form  action="{% url 'search-posts' %}" method="get">
-                 {% csrf_token %}
-                <input type="text" name="q" placeholder="Search Posts">
-                 <button type="submit" >Search</button>
-              </form>
-
-          </ul>
-        </p>
-      </div>
-    </div>
   </div>
-</main> -->
+</main>
 
     <!-- Derived from the video "Python Django Tutorial: Full-Featured Web App Part 3 - Templates" Timestamp 26:45 -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
