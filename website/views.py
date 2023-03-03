@@ -28,8 +28,8 @@ from .models import Posts, Comments, GreenPosts
 # Connects to the URLs
 def home(request):
     # Context: allows us to deploy info from here to the templates
-    posts = Posts.objects.filter().order_by('-date_posted')[:2]
-    greenposts = GreenPosts.objects.filter().order_by('-date_posted')[:2]
+    posts = Posts.objects.filter().order_by('-date_posted')[:3]
+    greenposts = GreenPosts.objects.filter().order_by('-date_posted')[:3]
 
     context = {
         'greenposts' : greenposts,
@@ -164,6 +164,7 @@ class PostsSearchView(ListView):
     model = Posts
     template_name = 'website/alternatives.html'
     context_object_name = 'posts'
+    ordering = ['-date_posted']
 
 #Code Derived from "create a basic search in django" Timestamp 4:45
     def get_queryset(self):
@@ -174,6 +175,7 @@ class GreenPostsSearchView(ListView):
     model = GreenPosts
     template_name = 'website/greenwashing.html'
     context_object_name = 'greenposts'
+    ordering = ['-date_posted']
 
 #Code Derived from "create a basic search in django" Timestamp 4:45
     def get_queryset(self):
