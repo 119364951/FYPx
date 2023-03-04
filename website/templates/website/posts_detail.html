@@ -31,7 +31,7 @@
                 No comments Yet <a href="{% url 'post-comment' object.id %}" >
           Add here</a>
           {% else %}
-            {% for comments.all in posts.comments.all %}
+            {% for comments in posts.comments.all %}
                 <strong>
                     {{ comments.name }} -
                     {{ comments.date_posted }}
