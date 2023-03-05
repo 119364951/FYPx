@@ -25,7 +25,8 @@
     </article>
 <!-- Code derived from "Build a Blog Comment Section - Django Blog #33" Timestamp -->
 <!-- Code updated from "Post Blog Comments - Django Blog #33" Timestamp 8:18 -->
-<!-- Code updated from "Post Blog Comments - Django Blog #34" Timestamp £:57 -->
+<!-- Code updated from "Post Blog Comments - Django Blog #34" Timestamp 3:57 -->
+<!-- Code derived from https://djangocentral.com/creating-comments-system-with-django/ -->
 
       <div class=col-md-8">
             <h1>Comments</h1>
@@ -40,7 +41,7 @@
             {% for comments in posts.comments.all %}
                 <strong>
                     {{ comments.name }} -
-                    {{ comments.date_posted }}
+                    {{ comments.created_on }}
                 </strong>
                 </br>
                 {{ comments.body }}

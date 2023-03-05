@@ -72,21 +72,32 @@ class UserPostListView(ListView):
 class PostDetailView(DetailView):
     model = Posts
 
-#def PostDetailView(request, slug):
-#    template_name = 'post_detail.html'
+#Code derived from "Post Blog Comments - Django Blog #34" Timestmap 5:48
+class PostCommentView(LoginRequiredMixin, CreateView):
+    model = Comments
+    template = 'website/comments_form.html'
+    fields = ['name', 'body']
+    success_url = '/'
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+#Derived https://djangocentral.com/creating-comments-system-with-django/
+#def Comment(request, slug):
+#    template_name = 'website/comments_form.html'
 #    post = get_object_or_404(Posts, slug=slug)
 #    comments = post.comments.filter(active=True)
 #    new_comment = None
-#    # Comment posted
+    # Comment posted
 #    if request.method == 'POST':
 #        comment_form = CommentForm(data=request.POST)
 #        if comment_form.is_valid():
 
             # Create Comment object but don't save to database yet
 #            new_comment = comment_form.save(commit=False)
-#            # Assign the current post to the comment
+            # Assign the current post to the comment
 #            new_comment.post = post
-#            # Save the comment to the database
+            # Save the comment to the database
 #            new_comment.save()
 #    else:
 #        comment_form = CommentForm()
@@ -143,17 +154,6 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
   #      else:
    #         form = CommentForm()
   #      return render(request, 'website/alternatives.html', {'form': form})
-
-#Code derived from "Post Blog Comments - Django Blog #34" Timestmap 5:48
-class PostCommentView(LoginRequiredMixin, CreateView):
-    model = Comments
-    template = 'website/comments_form.html'
-    fields = ['title', 'name', 'body']
-    success_url = '/'
-
-    def form_valid(self, form):
-       form.instance.author = self.request.user
-       return super().form_valid(form)
 
 #Greenwashing Posts
 

@@ -25,6 +25,7 @@ class GreenPosts(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
  #Code derived from "Build A Blog Comment Section - Django Blog #33" Timestamp 1:40
+ #Code Derived from https://djangocentral.com/creating-comments-system-with-django/
 class Comments(models.Model):
     posts = models.ForeignKey(Posts, related_name='comments', on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
