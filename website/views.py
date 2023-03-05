@@ -19,7 +19,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 #Code derived from "Post Blog Comments - Django Blog #34" Timestmap 5:48
 from .models import Posts, Comments, GreenPosts
 
-from .forms import CommentForm
+from .forms import CommentForm, PostForm
 
 # Create your views here
 # Posts: This variable has the innards of our posts
@@ -73,10 +73,10 @@ class PostDetailView(DetailView):
     model = Posts
 
 #Code derived from "Post Blog Comments - Django Blog #34" Timestmap 5:48
-class PostCommentView(LoginRequiredMixin, CreateView):
+class PostCommentView(CreateView):
     model = Comments
     template = 'website/comments_form.html'
-    fields = ['name', 'body']
+    form_class = CommentForm
     success_url = '/'
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -110,7 +110,7 @@ class PostCommentView(LoginRequiredMixin, CreateView):
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 20:21, 25:25
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Posts
-    fields = ['title', 'content']
+    form_class = PostForm
     success_url = '/'
 
     def form_valid(self, form):
@@ -120,7 +120,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 33:15
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Posts
-    fields = ['title', 'content']
+    form_class = PostForm
     success_url = '/'
 
     def form_valid(self, form):

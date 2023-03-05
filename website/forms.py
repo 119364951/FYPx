@@ -6,3 +6,9 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comments
         fields = ('name', 'body')
+
+class PostForm(forms.ModelForm):
+
+    class Meta:
+        model = Posts
+        fields = ["title", "content", "image"]

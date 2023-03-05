@@ -15,7 +15,7 @@ class Posts(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     # If User gets deleted their posts get removed too
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-
+    image = models.ImageField(default='default.jpg', upload_to='posts')
 # Code derived from Python Django Tutorial: Full-Featured Web App Part 5 - Database and Migrations Timestamp 2:19
 class GreenPosts(models.Model):
     title = models.CharField(max_length=100)
