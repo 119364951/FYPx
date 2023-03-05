@@ -25,12 +25,18 @@
     </article>
 <!-- Code derived from "Build a Blog Comment Section - Django Blog #33" Timestamp -->
 <!-- Code updated from "Post Blog Comments - Django Blog #33" Timestamp 8:18 -->
+<!-- Code updated from "Post Blog Comments - Django Blog #34" Timestamp £:57 -->
+
       <div class=col-md-8">
-            <h2>Comments</h2>
+            <h1>Comments</h1>
           {% if not posts.comments.all %}
                 No comments Yet <a href="{% url 'post-comment' object.id %}" >
           Add here</a>
           {% else %}
+
+          <a href="{% url 'post-comment' object.id %}" >Add comments</a>
+          </br></br>
+
             {% for comments in posts.comments.all %}
                 <strong>
                     {{ comments.name }} -

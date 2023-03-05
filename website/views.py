@@ -110,6 +110,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 #Code derived from "Post Blog Comments - Django Blog #34" Timestmap 5:48
 class PostCommentView(LoginRequiredMixin, CreateView):
     model = Comments
+    template = 'website/comments_form.html'
     fields = ['title', 'body']
 
     def form_valid(self, form):
