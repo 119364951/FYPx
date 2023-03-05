@@ -27,12 +27,12 @@ class GreenPosts(models.Model):
  #Code derived from "Build A Blog Comment Section - Django Blog #33" Timestamp 1:40
 class Comments(models.Model):
     posts = models.ForeignKey(Posts, related_name='comments', on_delete=models.CASCADE)
-    title = models.CharField(null=True, max_length=100)
-    name = models.CharField(null=True, blank=True, max_length=100)
+    name = models.CharField(max_length=100)
     body = models.TextField()
-    date_posted = models.DateTimeField(default=timezone.now)
-    # Derived Python Django Tutorial: Full-Feautred Web App Part 5 timestamp 19:39
-    # Code updated from "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 28:25
+    created_on = models.DateTimeField(default=timezone.now)
+    active = models.BooleanField(default=False)
+    class Meta:
+        ordering = ['created_on']
     def __str__(self):
-        return '%s - %s' %  (self.posts.title, self.name)
+        return 'Comment {} by {}'.format (self.body, self.name)
 

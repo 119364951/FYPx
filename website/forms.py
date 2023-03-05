@@ -5,4 +5,4 @@ from .models import Posts, Comments, GreenPosts
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comments
-        fields = ('title', 'name', 'body')
+        fields = ('name', 'body')
