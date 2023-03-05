@@ -1,6 +1,6 @@
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 11 - Pagination" Timestamp 25:10
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 32:10, 36:50
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -18,6 +18,8 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 # Timestamp 28:37
 #Code derived from "Post Blog Comments - Django Blog #34" Timestmap 5:48
 from .models import Posts, Comments, GreenPosts
+
+from .forms import CommentForm
 
 # Create your views here
 # Posts: This variable has the innards of our posts
@@ -107,15 +109,27 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
+#Code derived from "Add Comment Form To Django" Timestmap 8:05 (defunct)
+#def PostCommentView(request):
+#        if request.method == 'POST':
+#            form = CommentForm(request.POST)
+ #           if form.is_valid():
+ #               form.save()
+  #              return redirect('post-comment')
+  #      else:
+   #         form = CommentForm()
+  #      return render(request, 'website/alternatives.html', {'form': form})
+
 #Code derived from "Post Blog Comments - Django Blog #34" Timestmap 5:48
 class PostCommentView(LoginRequiredMixin, CreateView):
     model = Comments
     template = 'website/comments_form.html'
-    fields = ['title', 'body']
+    fields = ['title', 'name', 'body']
+    success_url = '/'
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
+       form.instance.author = self.request.user
+       return super().form_valid(form)
 
 #Greenwashing Posts
 
