@@ -20,11 +20,8 @@
         </div>
         <h2 class="article-title">{{ object.title }}</h2>
         <p class="article-content">{{ object.content }}</p>
-        {% if not posts.image.all %}
-        <img src="/media/posts/default.jpg" alt="whoops" >
-        {% else %}
-        <img src="{{ posts.image.url}}" alt="{{ posts.title }}" >
-        {% endif %}
+        <img src="{{ posts.image.url}}" alt="{{ posts.title }}" width="500" height="400" >
+
     </div>
     </article>
 <!-- Code derived from "Build a Blog Comment Section - Django Blog #33" Timestamp -->
