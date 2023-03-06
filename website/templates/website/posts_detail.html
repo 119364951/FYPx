@@ -20,21 +20,29 @@
             {% endif %}
         </div>
         <h2 class="article-title">{{ object.title }}</h2>
+        <img src="{{ posts.image.url}}" alt="{{ posts.title }}">
         <p class="article-content">{{ object.content }}</p>
     </div>
     </article>
 <!-- Code derived from "Build a Blog Comment Section - Django Blog #33" Timestamp -->
 <!-- Code updated from "Post Blog Comments - Django Blog #33" Timestamp 8:18 -->
+<!-- Code updated from "Post Blog Comments - Django Blog #34" Timestamp 3:57 -->
+<!-- Code derived from https://djangocentral.com/creating-comments-system-with-django/ -->
+
       <div class=col-md-8">
-            <h2>Comments</h2>
-          {% if not post.comments.all %}
+            <h1>Comments</h1>
+          {% if not posts.comments.all %}
                 No comments Yet <a href="{% url 'post-comment' object.id %}" >
           Add here</a>
           {% else %}
-            {% for comments.all in posts.comments.all %}
+
+          <a href="{% url 'post-comment' object.id %}" >Add comments</a>
+          </br></br>
+
+            {% for comments in posts.comments.all %}
                 <strong>
                     {{ comments.name }} -
-                    {{ comments.date_posted }}
+                    {{ comments.created_on }}
                 </strong>
                 </br>
                 {{ comments.body }}

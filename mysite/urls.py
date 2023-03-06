@@ -30,12 +30,12 @@ from django.conf.urls.static import static
 # Code derived from "Python Django Tutorial: Full-Featured Web App Part 7 - Login and Logout System" Timestamp: 2:13, 4:44, 24:00
 # Connects the project urls to the app urls
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='admin'),
+    path('', include('website.urls')),
     path('register/', user_views.register, name='register'),
     path('profile/', user_views.profile, name='profile'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
-    path('', include('website.urls')),
 ]
 
 
