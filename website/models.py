@@ -2,6 +2,7 @@ from django.db import models
 # Code derived from Python Django Tutorial: Full-Featured Web App Part 5 - Database and Migrations Timestamp 4:00
 from django.utils import timezone
 from django.contrib.auth.models import User
+from PIL import Image
 # Code derived from "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 29:00
 from django.urls import reverse
 
@@ -16,6 +17,7 @@ class Posts(models.Model):
     # If User gets deleted their posts get removed too
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg', upload_to='posts')
+
 # Code derived from Python Django Tutorial: Full-Featured Web App Part 5 - Database and Migrations Timestamp 2:19
 class GreenPosts(models.Model):
     title = models.CharField(max_length=100)

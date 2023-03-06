@@ -7,7 +7,6 @@
     {% block content %}
     <article class="media content-section">
 <!-- "Code derived from Python Django Tutorial: Full-Featured Web App Part 9 - Update User Profile" Tiemstamp 24:06-->
-<!-- Not working the image bit -->
        <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
     <div class="media-body">
         <div class="article-metadata">
@@ -20,8 +19,12 @@
             {% endif %}
         </div>
         <h2 class="article-title">{{ object.title }}</h2>
-        <img src="{{ posts.image.url}}" alt="{{ posts.title }}">
         <p class="article-content">{{ object.content }}</p>
+        {% if not posts.image.all %}
+        <img src="/media/posts/default.jpg" alt="whoops" >
+        {% else %}
+        <img src="{{ posts.image.url}}" alt="{{ posts.title }}" >
+        {% endif %}
     </div>
     </article>
 <!-- Code derived from "Build a Blog Comment Section - Django Blog #33" Timestamp -->
