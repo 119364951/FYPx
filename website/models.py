@@ -26,6 +26,7 @@ class GreenPosts(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     # If User gets deleted their posts get removed too
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    image = models.ImageField(default='/media/posts/default.jpg', upload_to='posts')
 
  #Code derived from "Build A Blog Comment Section - Django Blog #33" Timestamp 1:40
  #Code Derived from https://djangocentral.com/creating-comments-system-with-django/
