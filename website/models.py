@@ -41,3 +41,17 @@ class Comments(models.Model):
     def __str__(self):
         return 'Comment {} by {}'.format (self.body, self.name)
 
+ #Code derived from "Build A Blog Comment Section - Django Blog #33" Timestamp 1:40
+ #Code Derived from https://djangocentral.com/creating-comments-system-with-django/
+class GreenComments(models.Model):
+    greenposts = models.ForeignKey(Posts, related_name='greencomments', on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    body = models.TextField()
+    created_on = models.DateTimeField(default=timezone.now)
+    active = models.BooleanField(default=False)
+    class Meta:
+        ordering = ['created_on']
+    def __str__(self):
+        return 'Comment {} by {}'.format (self.body, self.name)
+
+

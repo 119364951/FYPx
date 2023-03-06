@@ -17,9 +17,9 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 ## Code derived from the video "Python Django Tutorial: Full-Featured Web App Part 5 - Database and Migrations"
 # Timestamp 28:37
 #Code derived from "Post Blog Comments - Django Blog #34" Timestmap 5:48
-from .models import Posts, Comments, GreenPosts
+from .models import Posts, Comments, GreenPosts, GreenComments
 
-from .forms import CommentForm, PostForm
+from .forms import CommentForm, PostForm, GreenCommentForm
 
 # Create your views here
 # Posts: This variable has the innards of our posts
@@ -77,6 +77,16 @@ class PostCommentView(CreateView):
     model = Comments
     template = 'website/comments_form.html'
     form_class = CommentForm
+    success_url = '/'
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+#Code derived from "Post Blog Comments - Django Blog #34" Timestmap 5:48
+class GreenPostCommentView(CreateView):
+    model = GreenComments
+    template = 'website/greencomments_form.html'
+    form_class = GreenCommentForm
     success_url = '/'
     def form_valid(self, form):
         form.instance.author = self.request.user
