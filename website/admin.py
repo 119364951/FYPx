@@ -8,6 +8,8 @@ from .models import Posts, Comments, GreenPosts
 admin.site.register(Posts)
 admin.site.register(GreenPosts)
 admin.site.register(Comments)
+
+#Derived https://djangocentral.com/creating-comments-system-with-django/
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('name', 'body', 'post', 'created_on', 'active')
     list_filter = ('active', 'created_on')
