@@ -18,6 +18,11 @@ class Posts(models.Model):
     # If User gets deleted their posts get removed too
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ImageField(default='/media/posts/default.jpg', upload_to='posts')
+#TBC
+    likes = models.ManyToManyField(User, related_name='post_like')
+
+    def number_of_likes(self):
+        return self.likes.count()
 
 # Code derived from Python Django Tutorial: Full-Featured Web App Part 5 - Database and Migrations Timestamp 2:19
 class GreenPosts(models.Model):

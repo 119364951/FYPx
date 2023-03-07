@@ -21,6 +21,10 @@ from .models import Posts, Comments, GreenPosts, GreenComments
 
 from .forms import CommentForm, PostForm, GreenCommentForm
 
+#TBC
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
 # Create your views here
 # Posts: This variable has the innards of our posts
 # Derived from the video "Python Django Tutorial: Full-Featured Web App Part 3 - Templates" Timestamp 10:20
@@ -55,6 +59,16 @@ class PostListView(ListView):
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 11 - Pagination" Timestamp 8:40
     paginate_by = 5
 
+#TBC
+def PostsLike(request, pk):
+    post = get_object_or_404(Posts, id=request.POST.get('post_id'))
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+    else:
+        post.likes.add(request.user)
+
+    return HttpResponseRedirect(reverse('post-detail', args=[str(pk)]))
+
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 23:20
 class UserPostListView(ListView):
     model = Posts
@@ -71,6 +85,18 @@ class UserPostListView(ListView):
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 11:00,,22:08
 class PostDetailView(DetailView):
     model = Posts
+
+    #TBC
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+
+        likes_connected = get_object_or_404(Posts, id=self.kwargs['pk'])
+        liked = False
+        if likes_connected.likes.filter(id=self.request.user.id).exists():
+            liked = True
+        data['number_of_likes'] = likes_connected.number_of_likes()
+        data['post_is_liked'] = liked
+        return data
 
 #Code derived from "Post Blog Comments - Django Blog #34" Timestmap 5:48
 class PostCommentView(CreateView):

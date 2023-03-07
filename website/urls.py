@@ -10,7 +10,7 @@ from .views import (PostListView, PostDetailView,
                     PostCommentView, GreenPostListView,
                     GreenUserPostListView, GreenPostDetailView,
                     PostsSearchView, GreenPostsSearchView,
-                    GreenPostCommentView)
+                    GreenPostCommentView, PostsLike)
 
 # Derived from the video "Python Django Tutorial: Full-Featured Web App Part 2 - Applications and Routes" Timestamp 5:30 and 14:10
 # Updated derived from the video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 4:00, 18:35
@@ -24,6 +24,7 @@ urlpatterns = [
     path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
     path('post/<int:pk>/comments/', PostCommentView.as_view(), name='post-comment'),
+    path('post-like/<int:pk>', views.PostsLike, name="post_like"),
 
     # Own code derived from the video "Python Django Tutorial: Full-Featured Web App Part 2 - Applications and Routes" Timestamp 5:30 and 14:10
     path('archives/', views.archives, name='website-archives'),
