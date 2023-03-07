@@ -61,6 +61,13 @@ For the Bootstrap:
 https://getbootstrap.com/docs/4.0/getting-started/introduction/#starter-template
 
 Iteration 6:
+
+Creating Comments System With Django
+https://djangocentral.com/creating-comments-system-with-django/
+
+Add Comment Form To Django
+https://www.youtube.com/watch?v=fatQJKeGWP8
+
 How to add Like/Unlike button to your Django Blog
 https://dev.to/radualexandrub/how-to-add-like-unlike-button-to-your-django-blog-5gkg
 
