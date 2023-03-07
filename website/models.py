@@ -18,7 +18,7 @@ class Posts(models.Model):
     # If User gets deleted their posts get removed too
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ImageField(default='/media/posts/default.jpg', upload_to='posts')
-#TBC
+    #Code derived "How to add Like/Unlike button to your Django Blog"
     likes = models.ManyToManyField(User, related_name='post_like')
 
     def number_of_likes(self):
@@ -32,6 +32,11 @@ class GreenPosts(models.Model):
     # If User gets deleted their posts get removed too
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ImageField(default='/media/posts/default.jpg', upload_to='posts')
+    #Code derived "How to add Like/Unlike button to your Django Blog"
+    likes = models.ManyToManyField(User, related_name='greenpost_like')
+
+    def number_of_likes(self):
+        return self.likes.count()
 
  #Code derived from "Build A Blog Comment Section - Django Blog #33" Timestamp 1:40
  #Code Derived from https://djangocentral.com/creating-comments-system-with-django/
