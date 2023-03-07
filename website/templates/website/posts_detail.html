@@ -24,7 +24,7 @@
 
     </div>
     </article>
-<!-- Commenting -->
+<!-- Code derived "How to add Like/Unlike button to your Django Blog" -->
 <!-- LIKES -->
     {% if user.is_authenticated %}
         <form action="{% url 'post_like' object.id %}" method="POST">
