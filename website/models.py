@@ -24,6 +24,14 @@ class Posts(models.Model):
     def number_of_likes(self):
         return self.likes.count()
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        img = Image.open(self.image.path)
+        if img.height > 400 or img.width > 400:
+            output_size = (400, 400)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
+
 # Code derived from Python Django Tutorial: Full-Featured Web App Part 5 - Database and Migrations Timestamp 2:19
 class GreenPosts(models.Model):
     title = models.CharField(max_length=100)
