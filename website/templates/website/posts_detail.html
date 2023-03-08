@@ -40,33 +40,5 @@
          <a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Log in to like this article!</a><br>
         {% endif %}
         <strong class="text-secondary">{{ number_of_likes }} Like{{ number_of_likes|pluralize }}</strong>
-<!-- Code derived from "Build a Blog Comment Section - Django Blog #33" Timestamp -->
-<!-- Code updated from "Post Blog Comments - Django Blog #33" Timestamp 8:18 -->
-<!-- Code updated from "Post Blog Comments - Django Blog #34" Timestamp 3:57 -->
-<!-- Code derived from https://djangocentral.com/creating-comments-system-with-django/ -->
-
-      <div class=col-md-8">
-            <h1>Comments</h1>
-          {% if not posts.comments.all %}
-                No comments Yet <a href="{% url 'post-comment' object.id %}" >
-          Add here</a>
-          {% else %}
-
-          <a href="{% url 'post-comment' object.id %}" >Add comments</a>
-          </br></br>
-
-            {% for comments in posts.comments.all %}
-                <strong>
-                    {{ comments.name }} -
-                    {{ comments.created_on }}
-                </strong>
-                </br>
-                {{ comments.body }}
-                </br>
-            {% endfor %}
-          {% endif %}
-
-      </div>
-
 <!-- Shows which block is explicitly being close  -->
 {% endblock content %}

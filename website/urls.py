@@ -24,19 +24,15 @@ urlpatterns = [
     path('post/new/', PostCreateView.as_view(), name='post-create'),
     path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
-    path('post/<int:pk>/comments/', PostCommentView.as_view(), name='post-comment'),
     # Code Derived from "How to add Like/Unlike button to your Django Blog"
     path('post-like/<int:pk>', views.PostsLike, name="post_like"),
 
     # Own code derived from the video "Python Django Tutorial: Full-Featured Web App Part 2 - Applications and Routes" Timestamp 5:30 and 14:10
     path('archives/', views.archives, name='website-archives'),
     path('alternatives/', PostListView.as_view(), name='website-alternatives'),
-    # path('greenwashing/', views.greenwashing, name='website-greenwashing'),
     path('greenwashing/', GreenPostListView.as_view(), name='website-greenwashing'),
     path('greenpost/<int:pk>/', GreenPostDetailView.as_view(), name='greenpost-detail'),
     path('greenuser/<str:username>', GreenUserPostListView.as_view(), name='greenuser-posts'),
-    #Code derived "How to add Like/Unlike button to your Django Blog"
-    path('post/<int:pk>/comments/', GreenPostCommentView.as_view(), name='greenpost-comment'),
     # Code Derived from "How to add Like/Unlike button to your Django Blog"
     path('greenpost-like/<int:pk>', views.GreenPostsLike, name="greenpost_like"),
 

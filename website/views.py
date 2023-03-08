@@ -19,7 +19,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 #Code derived from "Post Blog Comments - Django Blog #34" Timestmap 5:48
 from .models import Posts, Comments, GreenPosts, GreenComments
 
-from .forms import CommentForm, PostForm, GreenCommentForm
+from .forms import PostForm
 
 #TBC
 from django.http import HttpResponseRedirect
@@ -98,64 +98,6 @@ class PostDetailView(DetailView):
         data['post_is_liked'] = liked
         return data
 
-    def add_comment_to_post(request, self, pk):
-        post = get_object_or_404(Posts, id=self.kwargs['pk'])
-        if request.method == "POST":
-            form = CommentForm(request.POST)
-            if form.is_valid():
-                comment = form.save(commit=False)
-                comment.post = post
-                comment.save()
-                return redirect('post_detail', pk=post.pk)
-        else:
-            form = CommentForm()
-        return render(request, 'website/comments_form', {'form': form})
-
-#Code derived from "Post Blog Comments - Django Blog #34" Timestmap 5:48
-class PostCommentView(CreateView):
-    model = Comments
-    template = 'website/comments_form.html'
-    form_class = CommentForm
-    success_url = '/'
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
-#Code derived from "Post Blog Comments - Django Blog #34" Timestmap 5:48
-class GreenPostCommentView(CreateView):
-    model = GreenComments
-    template = 'website/greencomments_form.html'
-    form_class = GreenCommentForm
-    success_url = '/'
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
-#Derived https://djangocentral.com/creating-comments-system-with-django/
-#def Comment(request, slug):
-#    template_name = 'website/comments_form.html'
-#    post = get_object_or_404(Posts, slug=slug)
-#    comments = post.comments.filter(active=True)
-#    new_comment = None
-    # Comment posted
-#    if request.method == 'POST':
-#        comment_form = CommentForm(data=request.POST)
-#        if comment_form.is_valid():
-
-            # Create Comment object but don't save to database yet
-#            new_comment = comment_form.save(commit=False)
-            # Assign the current post to the comment
-#            new_comment.post = post
-            # Save the comment to the database
-#            new_comment.save()
-#    else:
-#        comment_form = CommentForm()
-
-#    return render(request, template_name, {'post': post,
-#                                           'comments': comments,
-#                                           'new_comment': new_comment,
-#                                           'comment_form': comment_form})
-
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 20:21, 25:25
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Posts
@@ -193,19 +135,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
-#Code derived from "Add Comment Form To Django" Timestmap 8:05 (defunct)
-#def PostCommentView(request):
-#        if request.method == 'POST':
-#            form = CommentForm(request.POST)
- #           if form.is_valid():
- #               form.save()
-  #              return redirect('post-comment')
-  #      else:
-   #         form = CommentForm()
-  #      return render(request, 'website/alternatives.html', {'form': form})
-
 #Greenwashing Posts
-
 # Own Code derived from "Python Django Tutorial: Full-Featured Web App Part 2 - Applications and Routes"
 def archives(request):
     return render(request, 'website/archives.html', {'title': 'Archives'})

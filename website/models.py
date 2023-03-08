@@ -46,39 +46,5 @@ class GreenPosts(models.Model):
     def number_of_likes(self):
         return self.likes.count()
 
- #Code derived from "Build A Blog Comment Section - Django Blog #33" Timestamp 1:40
- #Code Derived from https://djangocentral.com/creating-comments-system-with-django/
-class Comments(models.Model):
-    posts = models.ForeignKey(Posts, related_name='comments', on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
-    body = models.TextField()
-    created_on = models.DateTimeField(default=timezone.now)
-    active = models.BooleanField(default=False)
-
-    #TBC
-    def approve(self):
-        self.approved_comment = True
-        self.save()
-
-    def __str__(self):
-        return self.text
-
-    #class Meta:
-       # ordering = ['created_on']
-    #def __str__(self):
-        #return 'Comment {} by {}'.format (self.body, self.name)
-
- #Code derived from "Build A Blog Comment Section - Django Blog #33" Timestamp 1:40
- #Code Derived from https://djangocentral.com/creating-comments-system-with-django/
-class GreenComments(models.Model):
-    greenposts = models.ForeignKey(Posts, related_name='greencomments', on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
-    body = models.TextField()
-    created_on = models.DateTimeField(default=timezone.now)
-    active = models.BooleanField(default=False)
-    class Meta:
-        ordering = ['created_on']
-    def __str__(self):
-        return 'Comment {} by {}'.format (self.body, self.name)
 
 
