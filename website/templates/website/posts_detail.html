@@ -40,5 +40,28 @@
          <a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Log in to like this article!</a><br>
         {% endif %}
         <strong class="text-secondary">{{ number_of_likes }} Like{{ number_of_likes|pluralize }}</strong>
+
+<!-- TBC -->
+<hr>
+
+<a class="btn btn-default" href="<div data-gb-custom-block data-tag='url'" data-0='add_comment_to_post'>Add comment</a>
+{% for comment in post.comments.all %}
+
+{% endfor %}
+
+<div data-gb-custom-block data-tag="for"></div>
+
+    <div class="comment">
+        <div class="date">{{ comment.created_date }}</div>
+        <strong>{{ comment.author }}</strong>
+        <p>{{ comment.text|linebreaks }}</p>
+    </div>
+
+<div data-gb-custom-block data-tag='empty'>
+
+    <p>No comments here yet </p>
+
+</div>
+
 <!-- Shows which block is explicitly being close  -->
 {% endblock content %}

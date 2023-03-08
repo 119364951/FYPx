@@ -19,7 +19,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 #Code derived from "Post Blog Comments - Django Blog #34" Timestmap 5:48
 from .models import Posts, GreenPosts
 
-from .forms import PostForm
+from .forms import PostForm, CommentForm
 
 #TBC
 from django.http import HttpResponseRedirect
@@ -97,6 +97,19 @@ class PostDetailView(DetailView):
         data['number_of_likes'] = likes_connected.number_of_likes()
         data['post_is_liked'] = liked
         return data
+
+def add_comment_to_post(request, pk):
+    post = get_object_or_404(Posts, pk=pk)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = CommentForm()
+    return render(request, 'website/add_comment_to_post.html', {'form': form})
 
 # Code derived from video "Python Django Tutorial: Full-Featured Web App Part 10 - Create, Update, and Delete Posts" Timestamp 20:21, 25:25
 class PostCreateView(LoginRequiredMixin, CreateView):

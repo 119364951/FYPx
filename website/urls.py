@@ -26,6 +26,7 @@ urlpatterns = [
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
     # Code Derived from "How to add Like/Unlike button to your Django Blog"
     path('post-like/<int:pk>', views.PostsLike, name="post_like"),
+    path('post/<int:pk>/comment/', views.add_comment_to_post, name='add_comment_to_post'),
 
     # Own code derived from the video "Python Django Tutorial: Full-Featured Web App Part 2 - Applications and Routes" Timestamp 5:30 and 14:10
     path('archives/', views.archives, name='website-archives'),
