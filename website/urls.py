@@ -7,10 +7,10 @@ from . import views
 from .views import (PostListView, PostDetailView,
                     PostCreateView, PostUpdateView,
                     PostDeleteView, UserPostListView,
-                    PostCommentView, GreenPostListView,
+                     GreenPostListView,
                     GreenUserPostListView, GreenPostDetailView,
                     PostsSearchView, GreenPostsSearchView,
-                    GreenPostCommentView, PostsLike,
+                     PostsLike,
                     GreenPostsLike)
 
 # Derived from the video "Python Django Tutorial: Full-Featured Web App Part 2 - Applications and Routes" Timestamp 5:30 and 14:10

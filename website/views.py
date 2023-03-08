@@ -17,7 +17,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 ## Code derived from the video "Python Django Tutorial: Full-Featured Web App Part 5 - Database and Migrations"
 # Timestamp 28:37
 #Code derived from "Post Blog Comments - Django Blog #34" Timestmap 5:48
-from .models import Posts, Comments, GreenPosts, GreenComments
+from .models import Posts, GreenPosts
 
 from .forms import PostForm
 
