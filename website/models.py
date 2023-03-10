@@ -10,6 +10,7 @@ from django.urls import reverse
 
 # Change this for later Username: adming@gmail.com Email: admin@gmail.com Password: adminATgmail
 
+#THIS IS THE DATABASE CODE ALONGSIDE PYTHON COMMANDS
 # Code derived from Python Django Tutorial: Full-Featured Web App Part 5 - Database and Migrations Timestamp 2:19
 class Posts(models.Model):
     title = models.CharField(max_length=100)
