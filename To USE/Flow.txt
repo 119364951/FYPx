@@ -1,0 +1,9 @@
+User Side:
+Register
+Login -> Profile Update
+Home -> Alternatives: Post Making, Update and Delete -> Greenwashing -> Post Screening -> Lists
+Can't delete other users posts
+
+Admin -> Back End
+
+
